@@ -1,0 +1,20 @@
+package com.troy.trade.exchange.binance.dto;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+/**
+ * Order reject reason values.
+ */
+@JsonIgnoreProperties(ignoreUnknown = true)
+public enum OrderRejectReason {
+  NONE,
+  UNKNOWN_INSTRUMENT,
+  MARKET_CLOSED,
+  PRICE_QTY_EXCEED_HARD_LIMITS,
+  UNKNOWN_ORDER,
+  DUPLICATE_ORDER,
+  UNKNOWN_ACCOUNT,
+  INSUFFICIENT_BALANCE,
+  ACCOUNT_INACTIVE,
+  ACCOUNT_CANNOT_SETTLE
+}

@@ -1,0 +1,60 @@
+server:
+  port: 8094
+spring:
+  profiles:
+    active: dev
+  application:
+    name: troy-trade-exchange
+  cloud:
+    config:
+      label: troy-trade-exchange
+      profile: web
+      discovery:
+        enabled: true
+        service-id: troy-configurator
+      username: configUser
+      password: configUser
+
+logging:
+  path: ./logs #日志文件的相对路径或绝对路径
+
+---
+# 开发环境
+spring:
+  profiles: dev
+  cloud:
+    config:
+      name: develop-troy-trade-exchange
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaUser:eurekaUser@devtrdiscoveryoy1.mee.network/eureka/,http://eurekaUser:eurekaUser@devtrdiscoveryoy2.mee.network/eureka/
+
+---
+# 测试环境
+spring:
+  profiles: test
+  cloud:
+    config:
+      name: test-troy-trade-exchange
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaUser:eurekaUser@10.0.0.1:8770/eureka/
+
+---
+# 生产环境
+spring:
+  profiles: prod
+  cloud:
+    config:
+      name: prod-troy-trade-exchange
+      username: XXXXXX
+      password: XXXXXXX
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://XXXXX:XXXXXX@troy-discovery1:38123/eureka/,http://XXXXX:XXXXXX@troy-discovery2:38123/eureka/
